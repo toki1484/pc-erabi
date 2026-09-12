@@ -13,6 +13,13 @@
 
 ## 開発
 
+ローカルで動かす場合はリポジトリを取得してから。
+
+```bash
+git clone https://github.com/toki1484/pc-erabi.git
+cd pc-erabi
+```
+
 ```bash
 npm install
 npm run dev          # 開発サーバー
@@ -51,6 +58,10 @@ Cloudflare Workers の静的アセット配信で動かす。設定は `wrangler
 Steam外のタイトル（VALORANT・フォートナイト・FF14）は対象外で、公式ページの手動確認が必要。
 
 テスト時は環境変数 `STEAM_API_BASE` でAPIの向き先を差し替えられる。
+
+**ローカル環境を用意せずに実行する方法**があり、通常はこちらを使う。
+GitHubの Actions タブ → 「動作環境チェック」→ 「Run workflow」。結果はジョブのサマリーに出る。
+毎週月曜の朝にも自動実行され、パッチによる動作環境の変更を検出する。
 
 ### 見た目の確認
 
