@@ -1,0 +1,43 @@
+# ゲームの動作環境を Steam公式API から取得し、リポジトリの値との差分を出す。
+#
+# ローカル環境を用意しなくても、GitHubのActionsタブの「Run workflow」から実行できる。
+# 結果はジョブのサマリーに表示される。
+#
+# 定期実行もするのは、ゲームがパッチで動作環境を変えることがあるため。
+# 手作業では変更に気づけない。
+name: 動作環境チェック
+
+on:
+  workflow_dispatch: # Actionsタブから手動実行
+  schedule:
+    - cron: '0 0 * * 1' # 毎週月曜 09:00 JST
+
+# 差分を報告するだけで、リポジトリへの書き込みは行わない
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: ロジックのテスト
+        run: npm test
+
+      - name: Steamから動作環境を取得して差分を表示
+        run: |
+          {
+            echo '## 動作環境チェックの結果'
+            echo ''
+            echo '```'
+            npm run --silent fetch:requirements 2>&1
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
