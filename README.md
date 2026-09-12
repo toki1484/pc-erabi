@@ -18,7 +18,16 @@ npm install
 npm run dev          # 開発サーバー
 npm run build        # 本番ビルド (dist/)
 npm run verify:data  # データの品質ゲート（未検証データの一覧）
+npm run deploy       # Cloudflare へデプロイ（通常は push で自動実行される）
 ```
+
+### デプロイ
+
+Cloudflare Workers の静的アセット配信で動かす。設定は `wrangler.jsonc`。
+`main` への push で自動デプロイされるため、通常は手動実行しない。
+
+`wrangler.jsonc` を消すと、wrangler がビルド時に `astro add cloudflare` による
+自動設定を試みて `public/.assetsignore` が無いと言って失敗するので、消さないこと。
 
 ### データの扱い
 

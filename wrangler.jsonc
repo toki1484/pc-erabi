@@ -1,0 +1,14 @@
+{
+  // Cloudflare は本プロジェクトを Workers として作成するため、静的アセット配信の
+  // 設定をここに明示する。この設定ファイルが無いと wrangler が
+  // `astro add cloudflare` による自動設定を試み、public/.assetsignore が
+  // 存在せずデプロイに失敗する。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pc-erabi",
+  "compatibility_date": "2026-09-12",
+  // main を持たない = サーバー処理のない静的アセット専用の Worker。
+  // Astro は static モードで dist/ に出力する。
+  "assets": {
+    "directory": "./dist"
+  }
+}
