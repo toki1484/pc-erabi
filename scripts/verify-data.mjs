@@ -31,6 +31,7 @@ if (unverified.length) {
     console.log(`      最低  : ${g.minimum.gpuKey} / ${g.minimum.cpu} / RAM ${g.minimum.ram}GB`);
     console.log(`      推奨  : ${g.recommended.gpuKey} / ${g.recommended.cpu} / RAM ${g.recommended.ram}GB`);
     console.log(`      出典  : ${g.sourceUrl}`);
+    if (g.crossChecked) console.log(`      補足  : ${g.crossChecked}`);
   }
 }
 

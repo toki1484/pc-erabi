@@ -15,10 +15,11 @@
       },
       "recommended": {
         "gpuKey": "rtx-2060",
-        "cpu": "Core i5-11600K / Ryzen 5 5600X 相当",
+        "cpu": "Core i5-10400 / Core i3-12100 / Ryzen 5 3600 相当（最低環境と同じ）",
         "ram": 16,
         "note": "1080p/60fps・フレーム生成有効が前提"
-      }
+      },
+      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。 推奨GPUは要再確認"
     },
     {
       "id": "cyberpunk-2077",
@@ -49,15 +50,16 @@
         "gpuKey": "gtx-1060",
         "cpu": "Core i5-8400 / Ryzen 3 3300X 相当",
         "ram": 12,
-        "note": "フレームレート上限60fps"
+        "note": "フレームレート上限60fps。最低環境のGPUはVRAM 3GB版"
       },
       "recommended": {
-        "gpuKey": "gtx-1660s",
+        "gpuKey": "gtx-1070",
         "cpu": "Core i7-8700K / Ryzen 5 3600X 相当",
         "ram": 16,
         "note": "フレームレート上限60fps"
       },
-      "fpsCap": 60
+      "fpsCap": 60,
+      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。"
     },
     {
       "id": "valorant",
@@ -91,11 +93,12 @@
         "note": ""
       },
       "recommended": {
-        "gpuKey": "gtx-1660s",
-        "cpu": "Core i5-3570K 相当",
-        "ram": 8,
-        "note": "競技志向なら144fps以上を前提に一段上を推奨"
-      }
+        "gpuKey": "rtx-2060s",
+        "cpu": "Ryzen 5 3600 相当",
+        "ram": 16,
+        "note": "1080p高設定で60fps前後の想定。144fps以上を狙うならこれより大幅に上が必要"
+      },
+      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。"
     },
     {
       "id": "fortnite",
@@ -129,12 +132,13 @@
         "note": "60fps固定のタイトル"
       },
       "recommended": {
-        "gpuKey": "rtx-2060",
+        "gpuKey": "rtx-2070",
         "cpu": "Core i7-8700 / Ryzen 5 3600 相当",
         "ram": 16,
         "note": "60fps固定のタイトル"
       },
-      "fpsCap": 60
+      "fpsCap": 60,
+      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。"
     },
     {
       "id": "ffxiv",

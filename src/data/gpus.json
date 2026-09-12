@@ -1,31 +1,219 @@
 {
   "note": "相対性能スコアは当サイト独自の目安。RTX 4060 を 100 とした1080pラスタライズ性能の概算であり、実測値ではない。実機ベンチマークを取得し次第このファイルを補正する。",
-  "scale": { "baseline": "RTX 4060", "baselineScore": 100 },
+  "scale": {
+    "baseline": "RTX 4060",
+    "baselineScore": 100
+  },
   "gpus": [
-    { "key": "gtx-1060", "name": "GeForce GTX 1060", "vendor": "NVIDIA", "score": 38, "vram": 6 },
-    { "key": "gtx-1660s", "name": "GeForce GTX 1660 SUPER", "vendor": "NVIDIA", "score": 48, "vram": 6 },
-    { "key": "rtx-2060", "name": "GeForce RTX 2060", "vendor": "NVIDIA", "score": 58, "vram": 6 },
-    { "key": "rtx-3060", "name": "GeForce RTX 3060", "vendor": "NVIDIA", "score": 72, "vram": 12 },
-    { "key": "rx-6600", "name": "Radeon RX 6600", "vendor": "AMD", "score": 78, "vram": 8 },
-    { "key": "rtx-3060ti", "name": "GeForce RTX 3060 Ti", "vendor": "NVIDIA", "score": 92, "vram": 8 },
-    { "key": "rtx-4060", "name": "GeForce RTX 4060", "vendor": "NVIDIA", "score": 100, "vram": 8 },
-    { "key": "rx-7600", "name": "Radeon RX 7600", "vendor": "AMD", "score": 100, "vram": 8 },
-    { "key": "rx-6700xt", "name": "Radeon RX 6700 XT", "vendor": "AMD", "score": 110, "vram": 12 },
-    { "key": "rtx-5060", "name": "GeForce RTX 5060", "vendor": "NVIDIA", "score": 118, "vram": 8 },
-    { "key": "rtx-4060ti", "name": "GeForce RTX 4060 Ti", "vendor": "NVIDIA", "score": 120, "vram": 8 },
-    { "key": "rtx-5060ti", "name": "GeForce RTX 5060 Ti", "vendor": "NVIDIA", "score": 140, "vram": 16 },
-    { "key": "rx-7700xt", "name": "Radeon RX 7700 XT", "vendor": "AMD", "score": 140, "vram": 12 },
-    { "key": "rtx-4070", "name": "GeForce RTX 4070", "vendor": "NVIDIA", "score": 158, "vram": 12 },
-    { "key": "rx-7800xt", "name": "Radeon RX 7800 XT", "vendor": "AMD", "score": 170, "vram": 16 },
-    { "key": "rtx-4070s", "name": "GeForce RTX 4070 SUPER", "vendor": "NVIDIA", "score": 182, "vram": 12 },
-    { "key": "rtx-5070", "name": "GeForce RTX 5070", "vendor": "NVIDIA", "score": 185, "vram": 12 },
-    { "key": "rtx-4070tis", "name": "GeForce RTX 4070 Ti SUPER", "vendor": "NVIDIA", "score": 205, "vram": 16 },
-    { "key": "rx-7900xt", "name": "Radeon RX 7900 XT", "vendor": "AMD", "score": 215, "vram": 20 },
-    { "key": "rtx-5070ti", "name": "GeForce RTX 5070 Ti", "vendor": "NVIDIA", "score": 225, "vram": 16 },
-    { "key": "rtx-4080s", "name": "GeForce RTX 4080 SUPER", "vendor": "NVIDIA", "score": 245, "vram": 16 },
-    { "key": "rx-7900xtx", "name": "Radeon RX 7900 XTX", "vendor": "AMD", "score": 250, "vram": 24 },
-    { "key": "rtx-5080", "name": "GeForce RTX 5080", "vendor": "NVIDIA", "score": 270, "vram": 16 },
-    { "key": "rtx-4090", "name": "GeForce RTX 4090", "vendor": "NVIDIA", "score": 310, "vram": 24 },
-    { "key": "rtx-5090", "name": "GeForce RTX 5090", "vendor": "NVIDIA", "score": 390, "vram": 32 }
+    {
+      "key": "gtx-1060",
+      "name": "GeForce GTX 1060",
+      "vendor": "NVIDIA",
+      "score": 38,
+      "vram": 6
+    },
+    {
+      "key": "gtx-1660s",
+      "name": "GeForce GTX 1660 SUPER",
+      "vendor": "NVIDIA",
+      "score": 48,
+      "vram": 6
+    },
+    {
+      "key": "gtx-1070",
+      "name": "GeForce GTX 1070",
+      "vendor": "NVIDIA",
+      "score": 52,
+      "vram": 8
+    },
+    {
+      "key": "rx-vega56",
+      "name": "Radeon RX Vega 56",
+      "vendor": "AMD",
+      "score": 55,
+      "vram": 8
+    },
+    {
+      "key": "rtx-2060",
+      "name": "GeForce RTX 2060",
+      "vendor": "NVIDIA",
+      "score": 58,
+      "vram": 6
+    },
+    {
+      "key": "rtx-2060s",
+      "name": "GeForce RTX 2060 SUPER",
+      "vendor": "NVIDIA",
+      "score": 66,
+      "vram": 8
+    },
+    {
+      "key": "rtx-2070",
+      "name": "GeForce RTX 2070",
+      "vendor": "NVIDIA",
+      "score": 68,
+      "vram": 8
+    },
+    {
+      "key": "rtx-3060",
+      "name": "GeForce RTX 3060",
+      "vendor": "NVIDIA",
+      "score": 72,
+      "vram": 12
+    },
+    {
+      "key": "rx-5700xt",
+      "name": "Radeon RX 5700 XT",
+      "vendor": "AMD",
+      "score": 75,
+      "vram": 8
+    },
+    {
+      "key": "rx-6600",
+      "name": "Radeon RX 6600",
+      "vendor": "AMD",
+      "score": 78,
+      "vram": 8
+    },
+    {
+      "key": "rtx-3060ti",
+      "name": "GeForce RTX 3060 Ti",
+      "vendor": "NVIDIA",
+      "score": 92,
+      "vram": 8
+    },
+    {
+      "key": "rtx-4060",
+      "name": "GeForce RTX 4060",
+      "vendor": "NVIDIA",
+      "score": 100,
+      "vram": 8
+    },
+    {
+      "key": "rx-7600",
+      "name": "Radeon RX 7600",
+      "vendor": "AMD",
+      "score": 100,
+      "vram": 8
+    },
+    {
+      "key": "rx-6700xt",
+      "name": "Radeon RX 6700 XT",
+      "vendor": "AMD",
+      "score": 110,
+      "vram": 12
+    },
+    {
+      "key": "rtx-5060",
+      "name": "GeForce RTX 5060",
+      "vendor": "NVIDIA",
+      "score": 118,
+      "vram": 8
+    },
+    {
+      "key": "rtx-4060ti",
+      "name": "GeForce RTX 4060 Ti",
+      "vendor": "NVIDIA",
+      "score": 120,
+      "vram": 8
+    },
+    {
+      "key": "rtx-5060ti",
+      "name": "GeForce RTX 5060 Ti",
+      "vendor": "NVIDIA",
+      "score": 140,
+      "vram": 16
+    },
+    {
+      "key": "rx-7700xt",
+      "name": "Radeon RX 7700 XT",
+      "vendor": "AMD",
+      "score": 140,
+      "vram": 12
+    },
+    {
+      "key": "rtx-4070",
+      "name": "GeForce RTX 4070",
+      "vendor": "NVIDIA",
+      "score": 158,
+      "vram": 12
+    },
+    {
+      "key": "rx-7800xt",
+      "name": "Radeon RX 7800 XT",
+      "vendor": "AMD",
+      "score": 170,
+      "vram": 16
+    },
+    {
+      "key": "rtx-4070s",
+      "name": "GeForce RTX 4070 SUPER",
+      "vendor": "NVIDIA",
+      "score": 182,
+      "vram": 12
+    },
+    {
+      "key": "rtx-5070",
+      "name": "GeForce RTX 5070",
+      "vendor": "NVIDIA",
+      "score": 185,
+      "vram": 12
+    },
+    {
+      "key": "rtx-4070tis",
+      "name": "GeForce RTX 4070 Ti SUPER",
+      "vendor": "NVIDIA",
+      "score": 205,
+      "vram": 16
+    },
+    {
+      "key": "rx-7900xt",
+      "name": "Radeon RX 7900 XT",
+      "vendor": "AMD",
+      "score": 215,
+      "vram": 20
+    },
+    {
+      "key": "rtx-5070ti",
+      "name": "GeForce RTX 5070 Ti",
+      "vendor": "NVIDIA",
+      "score": 225,
+      "vram": 16
+    },
+    {
+      "key": "rtx-4080s",
+      "name": "GeForce RTX 4080 SUPER",
+      "vendor": "NVIDIA",
+      "score": 245,
+      "vram": 16
+    },
+    {
+      "key": "rx-7900xtx",
+      "name": "Radeon RX 7900 XTX",
+      "vendor": "AMD",
+      "score": 250,
+      "vram": 24
+    },
+    {
+      "key": "rtx-5080",
+      "name": "GeForce RTX 5080",
+      "vendor": "NVIDIA",
+      "score": 270,
+      "vram": 16
+    },
+    {
+      "key": "rtx-4090",
+      "name": "GeForce RTX 4090",
+      "vendor": "NVIDIA",
+      "score": 310,
+      "vram": 24
+    },
+    {
+      "key": "rtx-5090",
+      "name": "GeForce RTX 5090",
+      "vendor": "NVIDIA",
+      "score": 390,
+      "vram": 32
+    }
   ]
 }
