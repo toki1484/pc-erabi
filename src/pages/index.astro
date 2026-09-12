@@ -1,0 +1,216 @@
+---
+import Base from '../layouts/Base.astro';
+import gamesData from '../data/games.json';
+import gpusData from '../data/gpus.json';
+import { RESOLUTIONS, FPS_TARGETS } from '../lib/diagnose.js';
+
+const games = gamesData.games;
+const gpus = gpusData.gpus;
+const unverifiedCount = games.filter((g) => !g.verified).length;
+
+// 診断はクライアント側で完結させる（ページ数を増やさず1ページで結果を出す方針）。
+const payload = JSON.stringify({ games, gpus });
+---
+
+<Base
+  title="ゲーミングPCスペック診断 | pc-erabi"
+  description="遊びたいゲームと目標の解像度・フレームレートを選ぶと、必要なGPU・CPU・メモリの目安が分かります。"
+>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">pc-erabi</p>
+      <h1>そのゲーム、どのGPUがあれば足りる？</h1>
+      <p class="lead">
+        遊びたいタイトルと、目標の解像度・フレームレートを選んでください。
+        必要なGPU・CPU・メモリの目安を表示します。
+      </p>
+    </header>
+
+    <section class="tool" aria-label="スペック診断">
+      <div class="field">
+        <label for="game">遊びたいゲーム</label>
+        <select id="game">
+          {games.map((g) => <option value={g.id}>{g.title}</option>)}
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="resolution">解像度</label>
+          <select id="resolution">
+            {RESOLUTIONS.map((r) => <option value={r.key}>{r.label}（{r.detail}）</option>)}
+          </select>
+        </div>
+        <div class="field">
+          <label for="fps">目標フレームレート</label>
+          <select id="fps">
+            {FPS_TARGETS.map((f) => <option value={f.key}>{f.label}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div id="result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section class="slot">
+      <h2>この構成に該当するBTO機種</h2>
+      <p>
+        価格の日次追跡バッチを接続後、条件を満たす機種と実勢価格をここに表示します。
+        <strong>現在は準備中です。</strong>
+      </p>
+      <p class="fine">
+        将来ここに表示する商品リンクにはアフィリエイトリンクを含む予定です。
+        その際は景品表示法にもとづき、リンクであることをこの位置に明示します。
+      </p>
+    </section>
+
+    <section class="policy">
+      <h2>このサイトのデータの扱い</h2>
+      <ul>
+        <li>
+          <strong>相対性能スコアは目安です。</strong>
+          RTX 4060 を 100 とした概算で、実測値ではありません。実機ベンチマークを取得し次第、補正して公開します。
+        </li>
+        <li>
+          <strong>解像度・fpsの倍率も目安です。</strong>
+          アップスケーリング（DLSS/FSR）やフレーム生成を使うかどうかで実際の要求は変わります。
+        </li>
+        <li>
+          <strong>「要確認」バッジは、運営者が公式情報との突き合わせを終えていない項目です。</strong>
+          現在 {games.length} タイトル中 {unverifiedCount} 件が未確認です。確認が済んだものから順にバッジを外します。
+        </li>
+        <li>
+          動作環境の一次情報は各タイトルの公式ページです。診断結果に出典リンクを添えています。
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script is:inline set:html={`window.__PC_ERABI__ = ${payload};`} />
+  <script>
+    import { diagnose, RESOLUTIONS, FPS_TARGETS } from '../lib/diagnose.js';
+
+    const { games, gpus } = window.__PC_ERABI__;
+    const $ = (id) => document.getElementById(id);
+    const el = { game: $('game'), resolution: $('resolution'), fps: $('fps'), result: $('result') };
+
+    const esc = (s) =>
+      String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+    function render() {
+      const game = games.find((g) => g.id === el.game.value);
+      const r = diagnose({
+        game,
+        gpus,
+        resolutionKey: el.resolution.value,
+        fpsKey: el.fps.value,
+      });
+
+      const warnings = r.warnings.length
+        ? `<div class="warn">${r.warnings.map((w) => `<p>${esc(w)}</p>`).join('')}</div>`
+        : '';
+
+      const badge = game.verified
+        ? ''
+        : `<span class="badge" title="運営者による公式情報との突き合わせが未完了です">要確認</span>`;
+
+      const source = `<p class="fine">動作環境の出典: <a href="${esc(game.sourceUrl)}" rel="nofollow noopener" target="_blank">${esc(game.title)} 公式情報</a>${badge}</p>`;
+
+      if (!r.ok) {
+        el.result.innerHTML = `<div class="card"><p class="verdict">${esc(r.reason)}</p>${warnings}${source}</div>`;
+        return;
+      }
+
+      const headroom = r.headroom
+        ? `<div class="line"><span>余裕を持たせるなら</span><strong>${esc(r.headroom.name)}</strong></div>`
+        : '';
+
+      el.result.innerHTML = `
+        <div class="card">
+          <p class="verdict"><strong>${esc(r.gpu.name)}</strong> 以上があれば、${esc(r.game.title)} を ${esc(r.resolution.label)} / ${r.fps.key}fps で狙えます。</p>
+          <div class="lines">
+            ${headroom}
+            <div class="line"><span>CPU</span><strong>${esc(r.cpu.text)}</strong></div>
+            <div class="line"><span>メモリ</span><strong>${r.ram}GB</strong></div>
+            <div class="line"><span>VRAM</span><strong>${r.gpu.vram}GB（${esc(r.gpu.name)}の場合）</strong></div>
+          </div>
+          <p class="fine">${esc(r.cpu.reason)}</p>
+          ${warnings}
+          ${source}
+        </div>`;
+    }
+
+    [el.game, el.resolution, el.fps].forEach((n) => n.addEventListener('change', render));
+    render();
+  </script>
+
+  <style>
+    .eyebrow {
+      margin: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    h1 { margin: 4px 0 8px; font-size: clamp(1.5rem, 5vw, 2rem); }
+    .lead { margin: 0 0 28px; color: var(--text-dim); }
+    .tool {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .row .field { flex: 1 1 200px; }
+    .field { margin-bottom: 16px; }
+    label { display: block; font-size: 0.85rem; color: var(--text-dim); margin-bottom: 6px; }
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    :global(.card) {
+      margin-top: 4px;
+      padding: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    :global(.verdict) { margin: 0 0 12px; font-size: 1.05rem; }
+    :global(.lines) { display: grid; gap: 6px; margin-bottom: 12px; }
+    :global(.line) { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    :global(.line span) { color: var(--text-dim); font-size: 0.9rem; }
+    :global(.warn) {
+      margin: 12px 0;
+      padding: 10px 12px;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 8px;
+      color: var(--warn-text);
+    }
+    :global(.warn p) { margin: 0 0 6px; font-size: 0.9rem; }
+    :global(.warn p:last-child) { margin-bottom: 0; }
+    :global(.fine) { margin: 8px 0 0; font-size: 0.82rem; color: var(--text-dim); }
+    :global(.badge) {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 7px;
+      font-size: 0.72rem;
+      border: 1px solid var(--warn-border);
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      border-radius: 999px;
+    }
+    .slot, .policy { margin-top: 40px; }
+    .slot h2, .policy h2 { font-size: 1.1rem; margin-bottom: 8px; }
+    .slot p, .policy li { color: var(--text-dim); }
+    .policy ul { padding-left: 1.2em; }
+    .policy li { margin-bottom: 10px; }
+    .policy strong, .slot strong { color: var(--text); }
+  </style>
+</Base>

@@ -1,0 +1,159 @@
+{
+  "note": "各タイトルの動作環境。verified が false の項目は運営者による公式情報との突き合わせが未完了で、サイト上に「要確認」バッジが出る。裏取りが済んだら verified を true にする（判断は運営者のみが行う）。",
+  "games": [
+    {
+      "id": "monster-hunter-wilds",
+      "title": "モンスターハンターワイルズ",
+      "publisher": "カプコン",
+      "sourceUrl": "https://store.steampowered.com/app/2246340/",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1660s",
+        "cpu": "Core i5-10400 / Ryzen 5 3600 相当",
+        "ram": 16,
+        "note": "1080p/30fps・フレーム生成有効が前提"
+      },
+      "recommended": {
+        "gpuKey": "rtx-2060",
+        "cpu": "Core i5-11600K / Ryzen 5 5600X 相当",
+        "ram": 16,
+        "note": "1080p/60fps・フレーム生成有効が前提"
+      }
+    },
+    {
+      "id": "cyberpunk-2077",
+      "title": "サイバーパンク2077",
+      "publisher": "CD PROJEKT RED",
+      "sourceUrl": "https://store.steampowered.com/app/1091500/",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i7-6700 / Ryzen 5 1600 相当",
+        "ram": 12,
+        "note": "1080p/低設定"
+      },
+      "recommended": {
+        "gpuKey": "rtx-2060",
+        "cpu": "Core i7-12700 / Ryzen 5 7600X 相当",
+        "ram": 16,
+        "note": "1080p/高設定。レイトレーシング使用時は大幅に要求が上がる"
+      }
+    },
+    {
+      "id": "elden-ring",
+      "title": "ELDEN RING",
+      "publisher": "フロム・ソフトウェア",
+      "sourceUrl": "https://store.steampowered.com/app/1245620/",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i5-8400 / Ryzen 3 3300X 相当",
+        "ram": 12,
+        "note": "フレームレート上限60fps"
+      },
+      "recommended": {
+        "gpuKey": "gtx-1660s",
+        "cpu": "Core i7-8700K / Ryzen 5 3600X 相当",
+        "ram": 16,
+        "note": "フレームレート上限60fps"
+      },
+      "fpsCap": 60
+    },
+    {
+      "id": "valorant",
+      "title": "VALORANT",
+      "publisher": "Riot Games",
+      "sourceUrl": "https://support-valorant.riotgames.com/hc/ja/articles/360049743714",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i3-4150 相当",
+        "ram": 4,
+        "note": "軽量タイトル。高fps狙いではCPUの比重が大きい"
+      },
+      "recommended": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i5-9400F 相当",
+        "ram": 8,
+        "note": "144fps以上を狙う場合はCPUとモニタが先に効く"
+      }
+    },
+    {
+      "id": "apex-legends",
+      "title": "Apex Legends",
+      "publisher": "Electronic Arts",
+      "sourceUrl": "https://store.steampowered.com/app/1172470/",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i3-6300 相当",
+        "ram": 8,
+        "note": ""
+      },
+      "recommended": {
+        "gpuKey": "gtx-1660s",
+        "cpu": "Core i5-3570K 相当",
+        "ram": 8,
+        "note": "競技志向なら144fps以上を前提に一段上を推奨"
+      }
+    },
+    {
+      "id": "fortnite",
+      "title": "フォートナイト",
+      "publisher": "Epic Games",
+      "sourceUrl": "https://www.fortnite.com/news/system-requirements",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i3-3225 相当",
+        "ram": 8,
+        "note": "パフォーマンスモードならさらに軽い"
+      },
+      "recommended": {
+        "gpuKey": "gtx-1660s",
+        "cpu": "Core i5-7300U 相当",
+        "ram": 16,
+        "note": "最高設定・レイトレーシング使用時は要求が上がる"
+      }
+    },
+    {
+      "id": "street-fighter-6",
+      "title": "ストリートファイター6",
+      "publisher": "カプコン",
+      "sourceUrl": "https://store.steampowered.com/app/1364780/",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i5-7500 / Ryzen 3 1200 相当",
+        "ram": 8,
+        "note": "60fps固定のタイトル"
+      },
+      "recommended": {
+        "gpuKey": "rtx-2060",
+        "cpu": "Core i7-8700 / Ryzen 5 3600 相当",
+        "ram": 16,
+        "note": "60fps固定のタイトル"
+      },
+      "fpsCap": 60
+    },
+    {
+      "id": "ffxiv",
+      "title": "ファイナルファンタジーXIV",
+      "publisher": "スクウェア・エニックス",
+      "sourceUrl": "https://www.finalfantasyxiv.com/",
+      "verified": false,
+      "minimum": {
+        "gpuKey": "gtx-1060",
+        "cpu": "Core i7-9700 相当",
+        "ram": 8,
+        "note": ""
+      },
+      "recommended": {
+        "gpuKey": "rtx-2060",
+        "cpu": "Core i7-12400 相当",
+        "ram": 16,
+        "note": ""
+      }
+    }
+  ]
+}
