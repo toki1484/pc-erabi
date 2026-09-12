@@ -1,7 +1,7 @@
 // データの品質ゲート。
 // 「出典を自分の目で確認していない数値を検証済みにしない」という運営ルールを
 // 機械的に点検する。verified を true にする判断は運営者のみが行う。
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 
 const games = JSON.parse(readFileSync(new URL('../src/data/games.json', import.meta.url))).games;
 const gpus = JSON.parse(readFileSync(new URL('../src/data/gpus.json', import.meta.url))).gpus;
@@ -32,6 +32,32 @@ if (unverified.length) {
     console.log(`      推奨  : ${g.recommended.gpuKey} / ${g.recommended.cpu} / RAM ${g.recommended.ram}GB`);
     console.log(`      出典  : ${g.sourceUrl}`);
   }
+}
+
+// 記事の事実確認状況も同じ場所で点検する
+const articleDir = new URL('../src/content/articles/', import.meta.url);
+let articles = [];
+try {
+  articles = readdirSync(articleDir).filter((f) => f.endsWith('.md'));
+} catch {
+  // 記事ディレクトリがまだ無い場合は何もしない
+}
+
+const uncheckedArticles = articles.filter((f) => {
+  const body = readFileSync(new URL(f, articleDir), 'utf8');
+  return !/^factChecked:\s*true\s*$/m.test(body);
+});
+
+console.log(`\n記事: ${articles.length} 本 / 公開可(確認済み): ${articles.length - uncheckedArticles.length} 本`);
+if (uncheckedArticles.length) {
+  console.log('\n未確認の記事（本番ビルドには含まれない）:');
+  for (const f of uncheckedArticles) {
+    const body = readFileSync(new URL(f, articleDir), 'utf8');
+    const title = body.match(/^title:\s*(.+)$/m)?.[1] ?? f;
+    console.log(`  [ ] ${title}`);
+    console.log(`      ファイル: src/content/articles/${f}`);
+  }
+  console.log('\n内容を読んで事実を確認したら factChecked を true にしてください。');
 }
 
 if (errors.length) {

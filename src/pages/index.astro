@@ -18,7 +18,7 @@ const payload = JSON.stringify({ games, gpus });
 >
   <div class="wrap">
     <header>
-      <p class="eyebrow">pc-erabi</p>
+      <p class="eyebrow">pc-erabi<a class="nav" href="/articles/">記事一覧</a></p>
       <h1>そのゲーム、どのGPUがあれば足りる？</h1>
       <p class="lead">
         遊びたいタイトルと、目標の解像度・フレームレートを選んでください。
@@ -145,6 +145,12 @@ const payload = JSON.stringify({ games, gpus });
   </script>
 
   <style>
+    .nav {
+      float: right;
+      letter-spacing: normal;
+      text-transform: none;
+      font-size: 0.85rem;
+    }
     .eyebrow {
       margin: 0;
       font-size: 0.8rem;
@@ -196,16 +202,6 @@ const payload = JSON.stringify({ games, gpus });
     :global(.warn p) { margin: 0 0 6px; font-size: 0.9rem; }
     :global(.warn p:last-child) { margin-bottom: 0; }
     :global(.fine) { margin: 8px 0 0; font-size: 0.82rem; color: var(--text-dim); }
-    :global(.badge) {
-      display: inline-block;
-      margin-left: 6px;
-      padding: 1px 7px;
-      font-size: 0.72rem;
-      border: 1px solid var(--warn-border);
-      background: var(--warn-bg);
-      color: var(--warn-text);
-      border-radius: 999px;
-    }
     .slot, .policy { margin-top: 40px; }
     .slot h2, .policy h2 { font-size: 1.1rem; margin-bottom: 8px; }
     .slot p, .policy li { color: var(--text-dim); }

@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPublishedArticles } from '../../lib/articles.js';
+import { SITE } from '../../config';
+
+const articles = await getPublishedArticles();
+const fmt = (d) => d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base title={`記事 | ${SITE.name}`} description="ゲーミングPC選びに関する記事の一覧。">
+  <div class="wrap">
+    <p class="back"><a href="/">← 診断ツールに戻る</a></p>
+    <h1>記事</h1>
+
+    {articles.length === 0 ? (
+      <p class="empty">公開中の記事はまだありません。</p>
+    ) : (
+      <ul class="list">
+        {articles.map((a) => (
+          <li>
+            <a href={`/articles/${a.id}/`}>{a.data.title}</a>
+            <p class="desc">{a.data.description}</p>
+            <p class="meta">
+              <time datetime={a.data.publishDate.toISOString()}>{fmt(a.data.publishDate)}</time>
+              {!a.data.factChecked && <span class="badge">未確認（開発表示）</span>}
+            </p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+
+  <style>
+    .back { font-size: 0.9rem; margin: 0 0 16px; }
+    h1 { font-size: 1.5rem; margin: 0 0 24px; }
+    .empty { color: var(--text-dim); }
+    .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 24px; }
+    .list > li { padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .list > li:last-child { border-bottom: 0; }
+    .list a { font-size: 1.1rem; font-weight: 600; text-decoration: none; }
+    .list a:hover { text-decoration: underline; }
+    .desc { margin: 6px 0; color: var(--text-dim); font-size: 0.95rem; }
+    .meta { margin: 0; font-size: 0.82rem; color: var(--text-dim); }
+  </style>
+</Base>
