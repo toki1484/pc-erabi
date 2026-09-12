@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "astro": "^7.3.2"
+  },
+  "name": "pc-erabi",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "verify:data": "node scripts/verify-data.mjs"
+  }
+}
