@@ -118,6 +118,20 @@
       "vram": 8
     },
     {
+      "key": "rtx-3070",
+      "name": "GeForce RTX 3070",
+      "vendor": "NVIDIA",
+      "score": 128,
+      "vram": 8
+    },
+    {
+      "key": "rtx-3070ti",
+      "name": "GeForce RTX 3070 Ti",
+      "vendor": "NVIDIA",
+      "score": 138,
+      "vram": 8
+    },
+    {
       "key": "rtx-5060ti",
       "name": "GeForce RTX 5060 Ti",
       "vendor": "NVIDIA",
@@ -139,11 +153,25 @@
       "vram": 12
     },
     {
+      "key": "rtx-3080",
+      "name": "GeForce RTX 3080 (10GB)",
+      "vendor": "NVIDIA",
+      "score": 165,
+      "vram": 10
+    },
+    {
       "key": "rx-7800xt",
       "name": "Radeon RX 7800 XT",
       "vendor": "AMD",
       "score": 170,
       "vram": 16
+    },
+    {
+      "key": "rtx-3080-12g",
+      "name": "GeForce RTX 3080 (12GB)",
+      "vendor": "NVIDIA",
+      "score": 175,
+      "vram": 12
     },
     {
       "key": "rtx-4070s",
@@ -158,6 +186,20 @@
       "vendor": "NVIDIA",
       "score": 185,
       "vram": 12
+    },
+    {
+      "key": "rtx-3080ti",
+      "name": "GeForce RTX 3080 Ti",
+      "vendor": "NVIDIA",
+      "score": 190,
+      "vram": 12
+    },
+    {
+      "key": "rtx-3090",
+      "name": "GeForce RTX 3090",
+      "vendor": "NVIDIA",
+      "score": 195,
+      "vram": 24
     },
     {
       "key": "rtx-4070tis",

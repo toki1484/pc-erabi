@@ -5,3 +5,6 @@ dist/
 .env.*
 !.env.example
 .DS_Store
+
+# 取得したスナップショットは一次情報の記録としてコミットする
+# （data/steam-snapshots/ は除外しない）
