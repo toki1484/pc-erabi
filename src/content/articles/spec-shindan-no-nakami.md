@@ -2,7 +2,7 @@
 title: スペック診断ツールは何を根拠に「このGPUで足りる」と言っているのか
 description: 当サイトの診断ツールが使っている計算方法と、その限界を全部公開します。どこが実測でどこが推定なのかを隠さずに書きました。
 publishDate: 2026-09-12
-factChecked: false
+factChecked: true
 tags: [ツール解説, GPU]
 sources:
   - label: バリューコマース アフィリエイトAPIのご紹介
