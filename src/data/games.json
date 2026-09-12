@@ -6,20 +6,20 @@
       "title": "モンスターハンターワイルズ",
       "publisher": "カプコン",
       "sourceUrl": "https://store.steampowered.com/app/2246340/",
-      "verified": false,
+      "verified": true,
       "minimum": {
-        "gpuKey": "gtx-1660s",
+        "gpuKey": "gtx-1660",
         "cpu": "Core i5-10400 / Ryzen 5 3600 相当",
         "ram": 16,
         "note": "1080p/30fps・フレーム生成有効が前提"
       },
       "recommended": {
-        "gpuKey": "rtx-2060",
+        "gpuKey": "rtx-2060s",
         "cpu": "Core i5-10400 / Core i3-12100 / Ryzen 5 3600 相当（最低環境と同じ）",
         "ram": 16,
         "note": "1080p/60fps・フレーム生成有効が前提"
       },
-      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。 推奨GPUは要再確認",
+      "crossChecked": "2026-09-12 Steam公式APIの応答と一致することを確認",
       "steamAppId": 2246340
     },
     {
@@ -27,7 +27,7 @@
       "title": "サイバーパンク2077",
       "publisher": "CD PROJEKT RED",
       "sourceUrl": "https://store.steampowered.com/app/1091500/",
-      "verified": false,
+      "verified": true,
       "minimum": {
         "gpuKey": "gtx-1060",
         "cpu": "Core i7-6700 / Ryzen 5 1600 相当",
@@ -35,19 +35,20 @@
         "note": "1080p/低設定"
       },
       "recommended": {
-        "gpuKey": "rtx-2060",
-        "cpu": "Core i7-12700 / Ryzen 5 7600X 相当",
+        "gpuKey": "rtx-2060s",
+        "cpu": "Core i7-12700 / Ryzen 7 7800X3D 相当",
         "ram": 16,
         "note": "1080p/高設定。レイトレーシング使用時は大幅に要求が上がる"
       },
-      "steamAppId": 1091500
+      "steamAppId": 1091500,
+      "crossChecked": "2026-09-12 Steam公式APIの応答と一致することを確認"
     },
     {
       "id": "elden-ring",
       "title": "ELDEN RING",
       "publisher": "フロム・ソフトウェア",
       "sourceUrl": "https://store.steampowered.com/app/1245620/",
-      "verified": false,
+      "verified": true,
       "minimum": {
         "gpuKey": "gtx-1060",
         "cpu": "Core i5-8400 / Ryzen 3 3300X 相当",
@@ -61,7 +62,7 @@
         "note": "フレームレート上限60fps"
       },
       "fpsCap": 60,
-      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。",
+      "crossChecked": "2026-09-12 Steam公式APIの応答と一致することを確認",
       "steamAppId": 1245620
     },
     {
@@ -88,20 +89,20 @@
       "title": "Apex Legends",
       "publisher": "Electronic Arts",
       "sourceUrl": "https://store.steampowered.com/app/1172470/",
-      "verified": false,
+      "verified": true,
       "minimum": {
-        "gpuKey": "gtx-1060",
-        "cpu": "Core i3-6300 相当",
-        "ram": 8,
+        "gpuKey": "gtx-950",
+        "cpu": "Core i3-6300 / AMD FX 4350 相当",
+        "ram": 6,
         "note": ""
       },
       "recommended": {
-        "gpuKey": "rtx-2060s",
-        "cpu": "Ryzen 5 3600 相当",
-        "ram": 16,
-        "note": "1080p高設定で60fps前後の想定。144fps以上を狙うならこれより大幅に上が必要"
+        "gpuKey": "gtx-970",
+        "cpu": "Ryzen 5 相当",
+        "ram": 8,
+        "note": "Steamの記載は発売当時の水準。競技志向で高fpsを狙う場合はこれより大幅に上が必要"
       },
-      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。",
+      "crossChecked": "2026-09-12 Steam公式APIの応答と一致することを確認",
       "steamAppId": 1172470
     },
     {
@@ -128,7 +129,7 @@
       "title": "ストリートファイター6",
       "publisher": "カプコン",
       "sourceUrl": "https://store.steampowered.com/app/1364780/",
-      "verified": false,
+      "verified": true,
       "minimum": {
         "gpuKey": "gtx-1060",
         "cpu": "Core i5-7500 / Ryzen 3 1200 相当",
@@ -142,7 +143,7 @@
         "note": "60fps固定のタイトル"
       },
       "fpsCap": 60,
-      "crossChecked": "2026-09-12に二次情報で突き合わせ済み。公式ページは未確認。",
+      "crossChecked": "2026-09-12 Steam公式APIの応答と一致することを確認",
       "steamAppId": 1364780
     },
     {
