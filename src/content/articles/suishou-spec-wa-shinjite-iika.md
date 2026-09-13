@@ -9,6 +9,25 @@ sources:
     url: https://store.steampowered.com/api/appdetails
   - label: Google's August 2026 Spam Update - Scaled Content Abuse, Thin Affiliates
     url: https://www.gsqi.com/marketing-blog/august-2026-google-spam-update-case-studies/
+claims:
+  - text: モンスターハンターワイルズの最低環境は GTX 1660（SUPERではない）、推奨は RTX 2060 SUPER
+    source: https://store.steampowered.com/app/2246340/
+    check: ページ下部のシステム要件で、最低と推奨のグラフィックの型番に SUPER が付いているかを見る
+  - text: モンスターハンターワイルズは最低環境と推奨環境で同じCPUを挙げている
+    source: https://store.steampowered.com/app/2246340/
+    check: 最低と推奨のプロセッサー欄を見比べ、同一の型番が並んでいることを確認する
+  - text: Apex Legends の Steam 記載は 最低 GTX 950 / 6GB、推奨 GTX 970 / 8GB
+    source: https://store.steampowered.com/app/1172470/
+    check: システム要件のグラフィックとメモリの欄を見る
+  - text: サイバーパンク2077 の推奨GPUは RTX 2060 SUPER
+    source: https://store.steampowered.com/app/1091500/
+    check: 推奨環境のグラフィック欄に SUPER が付いているかを見る
+  - text: 当サイトのデータに9件の食い違いがあり、うち1件は二次情報を信じて自分で作り込んだ誤りだった
+    source: https://github.com/toki1484/pc-erabi/blob/main/docs/fact-check.md
+    check: fact-check.md の「実測データ」以降を読み、件数と Apex の経緯が記事の記述と一致するか確認する
+  - text: 動作環境チェックは毎週月曜に自動実行される
+    source: https://github.com/toki1484/pc-erabi/blob/main/.github/workflows/check-requirements.yml
+    check: ワークフローの cron が '0 0 * * 1'（月曜）になっているか確認する
 ---
 
 ゲーミングPCを選ぶとき、多くの人はまず公式の「推奨スペック」を見ます。
