@@ -6,10 +6,38 @@
   },
   "gpus": [
     {
+      "key": "gtx-950",
+      "name": "GeForce GTX 950",
+      "vendor": "NVIDIA",
+      "score": 16,
+      "vram": 2
+    },
+    {
+      "key": "gtx-970",
+      "name": "GeForce GTX 970",
+      "vendor": "NVIDIA",
+      "score": 33,
+      "vram": 4
+    },
+    {
       "key": "gtx-1060",
       "name": "GeForce GTX 1060",
       "vendor": "NVIDIA",
       "score": 38,
+      "vram": 6
+    },
+    {
+      "key": "rx-5500xt",
+      "name": "Radeon RX 5500 XT",
+      "vendor": "AMD",
+      "score": 40,
+      "vram": 8
+    },
+    {
+      "key": "gtx-1660",
+      "name": "GeForce GTX 1660",
+      "vendor": "NVIDIA",
+      "score": 44,
       "vram": 6
     },
     {
