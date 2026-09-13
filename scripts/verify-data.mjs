@@ -1,7 +1,7 @@
 // データの品質ゲート。
 // 「出典を自分の目で確認していない数値を検証済みにしない」という運営ルールを
 // 機械的に点検する。verified を true にする判断は運営者のみが行う。
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 
 const games = JSON.parse(readFileSync(new URL('../src/data/games.json', import.meta.url))).games;
 const gpus = JSON.parse(readFileSync(new URL('../src/data/gpus.json', import.meta.url))).gpus;
@@ -90,6 +90,31 @@ if (linkProblems.length) {
   console.log('\nリンク先を先に公開するか、リンクを外してください。');
 } else if (articles.length) {
   console.log('\n記事間リンク: 問題なし');
+}
+
+// ASPの審査では、運営者情報・プライバシーポリシー・広告表記と、
+// 連絡手段の明示を求められることが多い。提携申請の前に足りないものを出す。
+const requiredPages = [
+  ['src/pages/about.astro', '運営者情報'],
+  ['src/pages/privacy.astro', 'プライバシーポリシー'],
+  ['src/pages/disclaimer.astro', '免責事項・広告表記'],
+];
+const notReady = [];
+for (const [path, label] of requiredPages) {
+  if (!existsSync(new URL(`../${path}`, import.meta.url))) {
+    notReady.push(`${label}のページがありません（${path}）`);
+  }
+}
+const config = readFileSync(new URL('../src/config.ts', import.meta.url), 'utf8');
+if (/contactEmail:\s*''/.test(config)) {
+  notReady.push("連絡先が未設定です（src/config.ts の contactEmail）。サイト用のアドレスを設定してください");
+}
+
+if (notReady.length) {
+  console.log(`\nASP申請前に必要なもの: ${notReady.length}件`);
+  notReady.forEach((l) => console.log(`  - ${l}`));
+} else {
+  console.log('\nASP申請の前提: 問題なし');
 }
 
 if (errors.length) {

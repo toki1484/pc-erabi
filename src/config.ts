@@ -6,15 +6,27 @@ export const SITE = {
   author: 'みっつ',
   description:
     'ゲーミングPC・BTOの購入検討を、手作業では維持できないデータとツールで助けるサイト。',
+  // 問い合わせ先。ASPの審査では連絡手段の明示を求められることが多い。
+  //
+  // 空にしてある。事業主の個人アドレスを、本人の指示なく公開ページへ
+  // 出すことはしない。サイト用に用意したアドレスを設定すること。
+  // 未設定のあいだ、運営者情報ページに連絡先の節は出力されない。
+  contactEmail: '',
 };
 
 // Cloudflare Web Analytics のトークン。
 // Cloudflare ダッシュボード → Analytics & Logs → Web Analytics で
 // サイトを追加すると発行される。
 //
-// 空のままなら計測タグは出力されない（壊れたページにならない）。
+// 環境変数 PUBLIC_ANALYTICS_TOKEN があればそちらを優先する。
+// Cloudflare のビルド設定に入れればコード変更もPRも要らずに計測を始められる。
+//
+// どちらも空なら計測タグは出力されない（壊れたページにならない）。
+//
+// このトークンは秘密情報ではない。計測タグは全ページのHTMLに出力され、
+// 閲覧者全員が読める値である。APIキーとは性質が違う。
 //
 // Cookie を使わず、個人を追跡しない方式を選んでいる。
 // 「誰が来たか」ではなく「何人来たか」だけが分かればよく、
 // 読者に同意バナーを見せる負担も作りたくないため。
-export const ANALYTICS_TOKEN = '';
+export const ANALYTICS_TOKEN = import.meta.env.PUBLIC_ANALYTICS_TOKEN ?? '';

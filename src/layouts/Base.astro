@@ -1,5 +1,5 @@
 ---
-import { ANALYTICS_TOKEN } from '../config';
+import { ANALYTICS_TOKEN, SITE } from '../config';
 
 interface Props {
   title: string;
@@ -19,6 +19,17 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <slot />
+
+    <footer class="site-footer">
+      <nav>
+        <a href="/">診断ツール</a>
+        <a href="/articles/">記事一覧</a>
+        <a href="/about/">運営者情報</a>
+        <a href="/privacy/">プライバシーポリシー</a>
+        <a href="/disclaimer/">免責事項・広告表記</a>
+      </nav>
+      <p>&copy; {new Date().getFullYear()} {SITE.name}</p>
+    </footer>
 
     {/* 計測。トークン未設定なら何も出力しない */}
     {ANALYTICS_TOKEN && (
@@ -81,6 +92,23 @@ const { title, description } = Astro.props;
         background: var(--warn-bg);
         color: var(--warn-text);
         border-radius: 999px;
+      }
+      .site-footer {
+        max-width: 760px;
+        margin: 64px auto 0;
+        padding: 20px 20px 32px;
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+      .site-footer nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin-bottom: 10px;
+      }
+      .site-footer p {
+        margin: 0;
       }
     </style>
   </body>
