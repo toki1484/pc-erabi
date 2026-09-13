@@ -72,6 +72,19 @@ npm install -D playwright   # 常用しないので依存には含めていな�
 npm run build && npx serve dist
 ```
 
+## チーム
+
+役割ごとのエージェント定義を `.claude/agents/` に置いている。
+
+| 役割 | 名前 | 越えてはいけない線 |
+|---|---|---|
+| 編集 | `editor` | `factChecked` を立てない |
+| データ | `data-steward` | `verified` を立てない |
+| 調査 | `market-analyst` | 二次情報を一次情報として報告しない |
+| 品質 | `compliance` | 書き込み権限を持たない |
+
+公開の可否を判断できるのは事業主だけ。詳細は [docs/company.md](docs/company.md) 第3節。
+
 ## 構成
 
 - `src/pages/index.astro` — 診断ツールのUI
@@ -84,7 +97,8 @@ npm run build && npx serve dist
 
 | ファイル | 内容 |
 |---|---|
-| [docs/roadmap.md](docs/roadmap.md) | 事業ロードマップ（ターゲット・KPI・撤退基準）**最新の前提はこれ** |
+| [docs/company.md](docs/company.md) | 経営計画。KGIの検証、Phase 0のKPI、チーム、撤退基準 |
+| [docs/roadmap.md](docs/roadmap.md) | 事業ロードマップ（ターゲット・KPI・撤退基準） |
 | [docs/fact-check.md](docs/fact-check.md) | 復元ドキュメントの一次情報による検証結果 |
 | [docs/affiliate-plan.md](docs/affiliate-plan.md) | 実行計画（一部は roadmap が上書き） |
 | [docs/affiliate-research.md](docs/affiliate-research.md) | 市況調査 |
