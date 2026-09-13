@@ -1,7 +1,7 @@
 // データの品質ゲート。
 // 「出典を自分の目で確認していない数値を検証済みにしない」という運営ルールを
 // 機械的に点検する。verified を true にする判断は運営者のみが行う。
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 
 const games = JSON.parse(readFileSync(new URL('../src/data/games.json', import.meta.url))).games;
 const gpus = JSON.parse(readFileSync(new URL('../src/data/gpus.json', import.meta.url))).gpus;
@@ -59,6 +59,62 @@ if (uncheckedArticles.length) {
     console.log(`      ファイル: src/content/articles/${f}`);
   }
   console.log('\n内容を読んで事実を確認したら factChecked を true にしてください。');
+}
+
+// 記事どうしのリンクが、本番で切れないかを点検する。
+// 未確認の記事は本番ビルドに含まれないため、そこへのリンクはリンク切れになる。
+// 本数が増えるほど起きやすい事故なので、機械で検出する。
+const published = new Set();
+const slugOf = (f) => f.replace(/\.md$/, '');
+for (const f of articles) {
+  const body = readFileSync(new URL(f, articleDir), 'utf8');
+  if (/^factChecked:\s*true\s*$/m.test(body)) published.add(slugOf(f));
+}
+
+const linkProblems = [];
+for (const f of articles) {
+  const body = readFileSync(new URL(f, articleDir), 'utf8');
+  const isPublished = published.has(slugOf(f));
+  for (const [, slug] of body.matchAll(/\]\(\/articles\/([^/)#]+)\/?[^)]*\)/g)) {
+    if (!articles.includes(`${slug}.md`)) {
+      linkProblems.push(`${f} → /articles/${slug}/ : リンク先の記事が存在しません`);
+    } else if (isPublished && !published.has(slug)) {
+      linkProblems.push(`${f} → /articles/${slug}/ : リンク先が未確認のため、本番でリンク切れになります`);
+    }
+  }
+}
+
+if (linkProblems.length) {
+  console.log(`\n記事間リンクの問題: ${linkProblems.length}件`);
+  linkProblems.forEach((l) => console.log(`  - ${l}`));
+  console.log('\nリンク先を先に公開するか、リンクを外してください。');
+} else if (articles.length) {
+  console.log('\n記事間リンク: 問題なし');
+}
+
+// ASPの審査では、運営者情報・プライバシーポリシー・広告表記と、
+// 連絡手段の明示を求められることが多い。提携申請の前に足りないものを出す。
+const requiredPages = [
+  ['src/pages/about.astro', '運営者情報'],
+  ['src/pages/privacy.astro', 'プライバシーポリシー'],
+  ['src/pages/disclaimer.astro', '免責事項・広告表記'],
+];
+const notReady = [];
+for (const [path, label] of requiredPages) {
+  if (!existsSync(new URL(`../${path}`, import.meta.url))) {
+    notReady.push(`${label}のページがありません（${path}）`);
+  }
+}
+const config = readFileSync(new URL('../src/config.ts', import.meta.url), 'utf8');
+if (/contactEmail:\s*''/.test(config)) {
+  notReady.push("連絡先が未設定です（src/config.ts の contactEmail）。サイト用のアドレスを設定してください");
+}
+
+if (notReady.length) {
+  console.log(`\nASP申請前に必要なもの: ${notReady.length}件`);
+  notReady.forEach((l) => console.log(`  - ${l}`));
+} else {
+  console.log('\nASP申請の前提: 問題なし');
 }
 
 if (errors.length) {
