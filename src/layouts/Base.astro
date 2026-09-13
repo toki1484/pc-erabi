@@ -1,4 +1,6 @@
 ---
+import { ANALYTICS_TOKEN } from '../config';
+
 interface Props {
   title: string;
   description: string;
@@ -17,6 +19,16 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <slot />
+
+    {/* 計測。トークン未設定なら何も出力しない */}
+    {ANALYTICS_TOKEN && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${ANALYTICS_TOKEN}"}`}
+      />
+    )}
     <style is:global>
       :root {
         --bg: #f7f7f5;
